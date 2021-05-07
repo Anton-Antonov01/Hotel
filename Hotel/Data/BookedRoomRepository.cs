@@ -30,7 +30,6 @@ namespace Hotel.Data
                 }
             }
 
-
             strBookedRooms.Remove("");
 
             List<string[]> BookedRoomsData = new List<string[]>(); // [0] - ID, [1] - ID комнаты [2] - ID постояльца  [3] Дата начала бронирования  [4] - дата конца бронирования
@@ -74,6 +73,5 @@ namespace Hotel.Data
             BookedRooms.Add(bookedRoom);
             SaveChanges();
         }
-
     }
 }

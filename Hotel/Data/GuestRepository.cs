@@ -73,9 +73,5 @@ namespace Hotel.Data
             Guests.Add(guest);
             SaveChanges();
         }
-
-
-
-
     }
 }

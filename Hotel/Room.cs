@@ -27,8 +27,5 @@ namespace Hotel
         {
             return $"{Id}|{Number}|{Price}|{NumberOfSeats}|{Category}";
         }
-
-
-
     }
 }

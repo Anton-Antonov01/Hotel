@@ -25,6 +25,5 @@ namespace Hotel
         {
             return $"{Id}|{FullName}|{Birthday}|{Address}";
         }
-
     }
 }

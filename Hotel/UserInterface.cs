@@ -155,7 +155,6 @@ namespace Hotel
             DateTime birthday;
             string address;
 
-
             Console.WriteLine("Регистрация постояльца");
             Console.WriteLine("");
             Console.WriteLine("Введите Id постояльца");
@@ -228,7 +227,6 @@ namespace Hotel
                 ToBook();
             }
 
-
             int id;
             int roomId;
             int guestId;
@@ -270,10 +268,5 @@ namespace Hotel
             Console.ReadLine();
             MainMenu();
         }
-
-        //public void RoomsList()
-        //{
-        //    //booking.
-        //}
     }
 }

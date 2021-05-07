@@ -80,7 +80,5 @@ namespace Hotel.Data
             checkInCheckOut.Find(x => x.Id == CheckInId).CheckOutDate = CheckOutDate;
             SaveChanges();
         }
-
-
     }
 }

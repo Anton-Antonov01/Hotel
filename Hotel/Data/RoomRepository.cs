@@ -79,6 +79,5 @@ namespace Hotel.Data
             Rooms.Remove(Rooms.First(r => r.Id == Id));
             SaveChanges();
         }
-
     }
 }

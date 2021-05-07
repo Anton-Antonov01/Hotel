@@ -10,10 +10,9 @@ namespace Hotel
     class Booking
     {
         BookedRoomRepository bookedRoomRepository = new BookedRoomRepository();
-        CheckInCheckOutRepository checkInCheckOut = new CheckInCheckOutRepository();//Поменять название
+        CheckInCheckOutRepository checkInCheckOut = new CheckInCheckOutRepository();
         GuestRepository guestRepository = new GuestRepository();
         RoomRepository roomRepository = new RoomRepository();
-
 
         public void AddRoom(int id, int number, decimal price, int numberOfSeats, string category)
         {
@@ -32,7 +31,6 @@ namespace Hotel
                 throw new ArgumentException("Нет номера с указаным Id");
             roomRepository.RemoveRoom(Id);
         }
-
 
         public void ToBook(int id, int RoomId, int GuestId, DateTime startDate, DateTime endDate)
         {
@@ -63,8 +61,7 @@ namespace Hotel
             guestRepository.AddGuest(new Guest(id, fullName, birthDay, address));
         }
 
-
-        public IEnumerable<Room> FreeRoomsForTheDate(DateTime date1, DateTime date2 = default)//Список свободных номеров на дату //Проверяем файл с забронированными номерами
+        public IEnumerable<Room> FreeRoomsForTheDate(DateTime date1, DateTime date2 = default)
         {
             if (date2 == default)
                 date2 = date1;
@@ -72,13 +69,9 @@ namespace Hotel
             if (date2 < date1)
                 throw new ArgumentException("Первая дата должна быть раньше второй");
 
-
-
-            ////Получаю все забронированные комнаты
             var bookedRooms = bookedRoomRepository.BookedRooms;
             var AllRooms = roomRepository.Rooms;
 
-            //Получаю номера комнат, которые забронированы на выбраную дату или диапазон дат
             List<int> BookedRoomsToDate = new List<int>();
 
             Interval[] array = new Interval[bookedRooms.Count];
@@ -86,13 +79,11 @@ namespace Hotel
 
             for (int i = 0; i < array.Length; i++)
             {
-                //Console.WriteLine();
                 array[i] = new Interval();
                 array[i].Start = bookedRooms[i].StartDate;
                 array[i].End = bookedRooms[i].EndDate;
             }
 
-            //здесь заполняете массив
             Interval New = new Interval()
             {
                 Start = date1,
@@ -102,15 +93,10 @@ namespace Hotel
             for (int i = 0; i < array.Length; i++)
             {
                 if (array[i].Includes(New))
-                    BookedRoomsToDate.Add(bookedRooms[i].RoomId);//Получаем список забронированных номеров на проверяемый диапазон дат
+                    BookedRoomsToDate.Add(bookedRooms[i].RoomId);
             }
 
-
-
-            //Получаем свободные комнаты
             List<Room> FreeRooms = new List<Room>();
-
-
 
             bool IsBooked = false;
 
@@ -149,24 +135,13 @@ namespace Hotel
             checkInCheckOut.AddCheckIn(new CheckInCheckOut(checkInId, roomId, guestId, date1, date2));
         }
 
-        public void CheckOut(int checkInId, DateTime date2)//Выезд постояльца
+        public void CheckOut(int checkInId, DateTime date2)
         {
             if (!checkInCheckOut.checkInCheckOut.Any(c => c.Id == checkInId))
                 throw new ArgumentException("Въезд/Выезд с таким ID не существует");
 
             checkInCheckOut.CheckOut(checkInId, date2);
         }
-
-        public IEnumerable<Room> GetAllRooms()
-        {
-            return roomRepository.Rooms;
-        }
-
-        //public IEnumerable<Guest> GetAllGuests()
-        //{
-        //    //return guestRepository.;
-        //}
-
 
         class Interval
         {
@@ -177,11 +152,6 @@ namespace Hotel
                 return t.Start >= Start && t.Start <= End ||
                     t.End <= End && t.End >= Start ||
                     t.Start <= Start && t.End >= End;
-
-
-
-                //return t.Start > Start && t.Start < End ||
-                //    t.End < End && t.End > Start;
             }
         }
     }
