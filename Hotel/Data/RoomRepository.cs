@@ -67,7 +67,6 @@ namespace Hotel.Data
                 }
             }
         }
-
         public void AddRoom(Room room)
         {
             Rooms.Add(room);

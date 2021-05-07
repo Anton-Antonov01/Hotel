@@ -22,10 +22,6 @@ namespace Hotel
             Console.WriteLine("5) Регистрация постояльца");
             Console.WriteLine("6) Въезд постояльца");
             Console.WriteLine("7) Выезд постояльца");
-            Console.WriteLine("8) Список комнат");
-            Console.WriteLine("9) Список постояльцев");
-            Console.WriteLine("10) Список забронированных номеров");
-            Console.WriteLine("11) Список въездов/выездов постояльцев");
 
 
             int key = Convert.ToInt32(Console.ReadLine());
